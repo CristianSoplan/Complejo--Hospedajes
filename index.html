@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+        content="Habitaciones en alquiler cómodas, seguras y listas para mudarte. Consultá disponibilidad por WhatsApp.">
+
+  <title>Habitá | Habitaciones en alquiler</title>
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --green: #16a34a;
+      --dark: #0f172a;
+      --text: #334155;
+      --muted: #64748b;
+      --light: #f8fafc;
+      --white: #ffffff;
+      --border: #e2e8f0;
+      --orange: #f97316;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1160px, 92%);
+      margin: auto;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      color: var(--dark);
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-cta {
+      background: var(--primary);
+      color: white !important;
+      padding: 10px 17px;
+      border-radius: 8px;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      min-height: 680px;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(90deg,
+          rgba(15,23,42,.90) 0%,
+          rgba(15,23,42,.70) 45%,
+          rgba(15,23,42,.15) 100%),
+        url("https://images.unsplash.com/photo-1560185008-b033106af5c3?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+    }
+
+    .hero-content {
+      max-width: 680px;
+      color: white;
+      padding: 90px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.25);
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: #60a5fa;
+    }
+
+    .hero-description {
+      font-size: 19px;
+      color: #e2e8f0;
+      max-width: 600px;
+      margin-bottom: 32px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 15px 23px;
+      border-radius: 9px;
+      font-weight: 800;
+      transition: .2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: white;
+      box-shadow: 0 8px 25px rgba(22,163,74,.3);
+    }
+
+    .btn-primary:hover {
+      background: #15803d;
+      transform: translateY(-2px);
+    }
+
+    .btn-light {
+      background: white;
+      color: var(--dark);
+    }
+
+    .btn-light:hover {
+      background: #f1f5f9;
+    }
+
+    /* ================= BENEFICIOS ================= */
+
+    .benefits {
+      margin-top: -55px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 15px 45px rgba(15,23,42,.12);
+      overflow: hidden;
+    }
+
+    .benefit {
+      padding: 28px 20px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .benefit:last-child {
+      border: 0;
+    }
+
+    .benefit-icon {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .benefit h3 {
+      font-size: 16px;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .benefit p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ================= SECCIONES ================= */
+
+    section {
+      padding: 95px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 45px;
+    }
+
+    .eyebrow {
+      color: var(--primary);
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    .section-heading h2 {
+      color: var(--dark);
+      font-size: clamp(32px,4vw,46px);
+      line-height: 1.1;
+      margin-bottom: 13px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    /* ================= HABITACIONES ================= */
+
+    .rooms {
+      background: var(--light);
+    }
+
+    .room-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 25px;
+    }
+
+    .room-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 25px rgba(15,23,42,.05);
+      transition: .25s;
+    }
+
+    .room-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(15,23,42,.12);
+    }
+
+    .room-photo {
+      height: 245px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .room-photo img {
+      height: 100%;
+      object-fit: cover;
+      transition: .5s;
+    }
+
+    .room-card:hover .room-photo img {
+      transform: scale(1.05);
+    }
+
+    .available {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: #22c55e;
+      color: white;
+      padding: 6px 11px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .room-content {
+      padding: 23px;
+    }
+
+    .room-content h3 {
+      color: var(--dark);
+      font-size: 21px;
+      margin-bottom: 5px;
+    }
+
+    .location {
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 13px;
+    }
+
+    .room-content > p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 18px 0;
+    }
+
+    .feature {
+      background: #f1f5f9;
+      padding: 6px 9px;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+
+    .price-row {
+      border-top: 1px solid var(--border);
+      padding-top: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .price {
+      color: var(--dark);
+      font-size: 21px;
+      font-weight: 900;
+    }
+
+    .price small {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .room-btn {
+      background: var(--primary);
+      color: white;
+      padding: 9px 13px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    /* ================= OFERTA ================= */
+
+    .offer {
+      background: var(--dark);
+      color: white;
+    }
+
+    .offer-box {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .offer h2 {
+      font-size: clamp(32px,4vw,48px);
+      line-height: 1.1;
+      margin: 12px 0 18px;
+    }
+
+    .offer p {
+      color: #cbd5e1;
+      max-width: 620px;
+    }
+
+    .offer-list {
+      margin-top: 25px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .offer-list div {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .offer-price {
+      background: white;
+      color: var(--dark);
+      border-radius: 18px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .offer-price .old {
+      color: var(--muted);
+      text-decoration: line-through;
+      font-size: 14px;
+    }
+
+    .offer-price strong {
+      display: block;
+      color: var(--green);
+      font-size: 38px;
+      margin: 5px 0;
+    }
+
+    .offer-price span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .offer-price .btn {
+      width: 100%;
+      margin-top: 18px;
+    }
+
+    /* ================= PROCESO ================= */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 25px;
+    }
+
+    .step {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .step-number {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      background: #dbeafe;
+      color: var(--primary);
+      border-radius: 50%;
+      font-weight: 900;
+      margin-bottom: 15px;
+    }
+
+    .step h3 {
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* ================= TESTIMONIOS ================= */
+
+    .testimonials {
+      background: var(--light);
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 22px;
+    }
+
+    .testimonial {
+      background: white;
+      padding: 27px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .stars {
+      color: #f59e0b;
+      margin-bottom: 12px;
+    }
+
+    .testimonial p {
+      color: #475569;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .person {
+      font-weight: 800;
+      color: var(--dark);
+      font-size: 14px;
+    }
+
+    .person span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: normal;
+    }
+
+    /* ================= FAQ ================= */
+
+    .faq {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    details {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      color: var(--dark);
+      font-weight: 800;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    summary::after {
+      content: "+";
+      color: var(--primary);
+      font-size: 20px;
+    }
+
+    details[open] summary::after {
+      content: "−";
+    }
+
+    details p {
+      color: var(--muted);
+      font-size: 14px;
+      padding-top: 12px;
+    }
+
+    /* ================= CTA FINAL ================= */
+
+    .final-cta {
+      background:
+        linear-gradient(135deg,#2563eb,#1e40af);
+      color: white;
+      text-align: center;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(34px,5vw,52px);
+      line-height: 1.1;
+      margin-bottom: 15px;
+    }
+
+    .final-cta p {
+      color: #dbeafe;
+      max-width: 600px;
+      margin: 0 auto 28px;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      background: #020617;
+      color: #94a3b8;
+      padding: 30px 0;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 13px;
+    }
+
+    /* ================= WHATSAPP ================= */
+
+    .floating-whatsapp {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25d366;
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 27px;
+      box-shadow: 0 8px 25px rgba(0,0,0,.25);
+      z-index: 999;
+      transition: .2s;
+    }
+
+    .floating-whatsapp:hover {
+      transform: scale(1.08);
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media(max-width: 900px) {
+
+      .benefit-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .benefit:nth-child(2) {
+        border-right: 0;
+      }
+
+      .room-grid,
+      .testimonial-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .offer-box {
+        grid-template-columns: 1fr;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width: 650px) {
+
+      .nav {
+        height: auto;
+        min-height: 65px;
+      }
+
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+
+      .hero {
+        min-height: 650px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+      }
+
+      .benefits {
+        margin-top: -35px;
+      }
+
+      .benefit-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .benefit {
+        padding: 20px 10px;
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      .room-grid,
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .room-photo {
+        height: 260px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+    <div class="container nav">
+
+      <a href="#" class="logo">
+        Complejo Pichin<span>  </span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#habitaciones">Habitaciones</a>
+        <a href="#beneficios">Beneficios</a>
+        <a href="#preguntas">Preguntas</a>
+
+        <a
+          class="nav-cta"
+          href="https://wa.me/5490000000000?text=Hola,%20quiero%20consultar%20por%20una%20habitaci%C3%B3n"
+          target="_blank">
+          WhatsApp
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container">
+
+      <div class="hero-content">
+
+        <div class="badge">
+          🟢 Habitaciones disponibles
+        </div>
+
+        <h1>
+          Tu próximo lugar para
+          <span>vivir cómodo.</span>
+        </h1>
+
+        <p class="hero-description">
+          Habitaciones listas para mudarte, con excelente ubicación,
+          servicios y todo lo que necesitás para sentirte como en casa.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a
+            class="btn btn-primary"
+            href="https://wa.me/5490000000000?text=Hola,%20quiero%20ver%20las%20habitaciones%20disponibles"
+            target="_blank">
+            💬 Consultar por WhatsApp
+          </a>
+
+          <a class="btn btn-light" href="#habitaciones">
+            Ver habitaciones →
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- BENEFICIOS -->
+
+  <div class="benefits" id="beneficios">
+
+    <div class="container benefit-grid">
+
+      <div class="benefit">
+        <div class="benefit-icon">📍</div>
+        <h3>Excelente ubicación</h3>
+        <p>Cerca de todo</p>
+      </div>
+
+      <div class="benefit">
+        <div class="benefit-icon">📶</div>
+        <h3>WiFi incluido</h3>
+        <p>Conectividad diaria</p>
+      </div>
+
+      <div class="benefit">
+        <div class="benefit-icon">🔒</div>
+        <h3>Ambiente seguro</h3>
+        <p>Tranquilidad para vivir</p>
+      </div>
+
+      <div class="benefit">
+        <div class="benefit-icon">🛏️</div>
+        <h3>Listo para mudarte</h3>
+        <p>Habitaciones equipadas</p>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- HABITACIONES -->
+
+  <section class="rooms" id="habitaciones">
+
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Elegí tu espacio</div>
+
+        <h2>
+          Habitaciones pensadas para vos
+        </h2>
+
+        <p>
+          Diferentes opciones para adaptarnos a tu presupuesto
+          y necesidades.
+        </p>
+      </div>
+
+
+      <div class="room-grid">
+
+        <!-- HABITACIÓN 1 -->
+
+        <article class="room-card">
+
+          <div class="room-photo">
+
+            <img
+              src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=85"
+              alt="Habitación individual">
+
+            <span class="available">
+              Disponible
+            </span>
+
+          </div>
+
+          <div class="room-content">
+
+            <h3>Habitación Individual</h3>
+
+            <div class="location">
+              📍 Zona Centro
+            </div>
+
+            <p>
+              Espacio cómodo y luminoso, ideal para una persona.
+            </p>
+
+            <div class="features">
+              <span class="feature">🛏️ Amueblada</span>
+              <span class="feature">📶 WiFi</span>
+              <span class="feature">🍳 Cocina</span>
+            </div>
+
+            <div class="price-row">
+
+              <div class="price">
+                $180.000
+                <small>/mes</small>
+              </div>
+
+              <a
+                class="room-btn"
+                href="https://wa.me/5490000000000?text=Hola,%20me%20interesa%20la%20habitaci%C3%B3n%20individual"
+                target="_blank">
+                Consultar
+              </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- HABITACIÓN 2 -->
+
+        <article class="room-card">
+
+          <div class="room-photo">
+
+            <img
+              src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=85"
+              alt="Habitación doble">
+
+            <span class="available">
+              Disponible
+            </span>
+
+          </div>
+
+          <div class="room-content">
+
+            <h3>Habitación Doble</h3>
+
+            <div class="location">
+              📍 Zona Norte
+            </div>
+
+            <p>
+              Amplia habitación para una o dos personas.
+            </p>
+
+            <div class="features">
+              <span class="feature">🛏️ 2 camas</span>
+              <span class="feature">📶 WiFi</span>
+              <span class="feature">🚿 Baño</span>
+            </div>
+
+            <div class="price-row">
+
+              <div class="price">
+                $230.000
+                <small>/mes</small>
+              </div>
+
+              <a
+                class="room-btn"
+                href="https://wa.me/5490000000000?text=Hola,%20me%20interesa%20la%20habitaci%C3%B3n%20doble"
+                target="_blank">
+                Consultar
+              </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- PREMIUM -->
+
+        <article class="room-card">
+
+          <div class="room-photo">
+
+            <img
+              src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=85"
+              alt="Habitación premium">
+
+            <span class="available">
+              Disponible
+            </span>
+
+          </div>
+
+          <div class="room-content">
+
+            <h3>Habitación Premium</h3>
+
+            <div class="location">
+              📍 Barrio Residencial
+            </div>
+
+            <p>
+              Mayor privacidad y comodidad para disfrutar todos los días.
+            </p>
+
+            <div class="features">
+              <span class="feature">🛁 Baño privado</span>
+              <span class="feature">❄️ Aire</span>
+              <span class="feature">📶 WiFi</span>
+            </div>
+
+            <div class="price-row">
+
+              <div class="price">
+                $300.000
+                <small>/mes</small>
+              </div>
+
+              <a
+                class="room-btn"
+                href="https://wa.me/5490000000000?text=Hola,%20me%20interesa%20la%20habitaci%C3%B3n%20premium"
+                target="_blank">
+                Consultar
+              </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- OFERTA -->
+
+  <section class="offer">
+
+    <div class="container offer-box">
+
+      <div>
+
+        <div class="eyebrow" style="color:#60a5fa;">
+          Promoción de ingreso
+        </div>
+
+        <h2>
+          Mudate sin complicaciones.
+        </h2>
+
+        <p>
+          Consultá hoy por las habitaciones disponibles y
+          conocé nuestras condiciones de ingreso.
+        </p>
+
+        <div class="offer-list">
+          <div>✓ Habitación equipada</div>
+          <div>✓ WiFi disponible</div>
+          <div>✓ Espacios comunes</div>
+          <div>✓ Atención personalizada</div>
+        </div>
+
+      </div>
+
+      <div class="offer-price">
+
+        <div class="old">
+          Consultá precio actual
+        </div>
+
+        <strong>Disponible</strong>
+
+        <span>
+          Consultá condiciones y disponibilidad
+        </span>
+
+        <a
+          class="btn btn-primary"
+          href="https://wa.me/5490000000000?text=Hola,%20quiero%20consultar%20la%20promoci%C3%B3n%20de%20ingreso"
+          target="_blank">
+          Consultar ahora
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- COMO FUNCIONA -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <div class="eyebrow">
+          Simple y rápido
+        </div>
+
+        <h2>
+          Alquilá tu habitación en 3 pasos
+        </h2>
+
+      </div>
+
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-number">1</div>
+
+          <h3>Elegí tu habitación</h3>
+
+          <p>
+            Mirá las opciones disponibles y elegí
+            la que mejor se adapte a vos.
+          </p>
+        </div>
+
+
+        <div class="step">
+          <div class="step-number">2</div>
+
+          <h3>Escribinos</h3>
+
+          <p>
+            Contactanos por WhatsApp para consultar
+            disponibilidad y condiciones.
+          </p>
+        </div>
+
+
+        <div class="step">
+          <div class="step-number">3</div>
+
+          <h3>Coordiná tu visita</h3>
+
+          <p>
+            Visitá la habitación y coordiná
+            tu ingreso.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- TESTIMONIOS -->
+
+  <section class="testimonials">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <div class="eyebrow">
+          Experiencias
+        </div>
+
+        <h2>
+          Lo que dicen nuestros inquilinos
+        </h2>
+
+      </div>
+
+
+      <div class="testimonial-grid">
+
+        <div class="testimonial">
+
+          <div class="stars">
+            ★★★★★
+          </div>
+
+          <p>
+            “La habitación estaba exactamente como me la mostraron.
+            Pude mudarme rápidamente y la ubicación me queda perfecta.”
+          </p>
+
+          <div class="person">
+            Martín
+            <span>Inquilino</span>
+          </div>
+
+        </div>
+
+
+        <div class="testimonial">
+
+          <div class="stars">
+            ★★★★★
+          </div>
+
+          <p>
+            “Muy buena atención y todo bastante simple para coordinar.
+            La habitación estaba equipada y limpia.”
+          </p>
+
+          <div class="person">
+            Lucía
+            <span>Inquilina</span>
+          </div>
+
+        </div>
+
+
+        <div class="testimonial">
+
+          <div class="stars">
+            ★★★★★
+          </div>
+
+          <p>
+            “Buscaba algo práctico para mudarme y encontré una opción
+            que se adaptaba a mi presupuesto.”
+          </p>
+
+          <div class="person">
+            Diego
+            <span>Inquilino</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FAQ -->
+
+  <section id="preguntas">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <div class="eyebrow">
+          Preguntas frecuentes
+        </div>
+
+        <h2>
+          Antes de alquilar
+        </h2>
+
+      </div>
+
+
+      <div class="faq">
+
+        <details>
+          <summary>
+            ¿Qué incluye el alquiler?
+          </summary>
+
+          <p>
+            Depende de cada habitación. Consultanos por WhatsApp
+            para conocer exactamente qué servicios están incluidos.
+          </p>
+        </details>
+
+
+        <details>
+          <summary>
+            ¿Puedo visitar la habitación?
+          </summary>
+
+          <p>
+            Sí. Podés coordinar una visita previamente para conocer
+            el espacio y resolver tus dudas.
+          </p>
+        </details>
+
+
+        <details>
+          <summary>
+            ¿Qué documentación necesito?
+          </summary>
+
+          <p>
+            Los requisitos pueden variar según la habitación.
+            Consultanos para conocer las condiciones actuales.
+          </p>
+        </details>
+
+
+        <details>
+          <summary>
+            ¿Cómo consulto disponibilidad?
+          </summary>
+
+          <p>
+            Podés escribirnos directamente por WhatsApp utilizando
+            cualquiera de los botones de esta página.
+          </p>
+        </details>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA FINAL -->
+
+  <section class="final-cta">
+
+    <div class="container">
+
+      <h2>
+        ¿Buscás una habitación?
+      </h2>
+
+      <p>
+        Consultá ahora las opciones disponibles y encontrá
+        un espacio donde puedas sentirte cómodo.
+      </p>
+
+      <a
+        class="btn btn-primary"
+        href="https://wa.me/5490000000000?text=Hola,%20quiero%20consultar%20por%20una%20habitaci%C3%B3n"
+        target="_blank">
+        💬 Quiero consultar
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container footer-content">
+
+      <div>
+        © 2026 Habitá. Todos los derechos reservados.
+      </div>
+
+      <div>
+        Habitaciones en alquiler
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- WHATSAPP FLOTANTE -->
+
+  <a
+    class="floating-whatsapp"
+    href="https://wa.me/5490000000000?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20las%20habitaciones"
+    target="_blank"
+    aria-label="Contactar por WhatsApp">
+
+    💬
+
+  </a>
+
+</body>
+</html>
